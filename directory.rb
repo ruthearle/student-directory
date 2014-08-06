@@ -29,14 +29,34 @@ def print_header
 	puts "-------------"
 end
 
+# Version 6
+#def print(students)
+#	students.each do |student|
+#		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#	end
+#end
+
+# Exercise 2
+#def print(students)
+#	students.each_with_index do |student, index|
+#		puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+#	end
+#end
+
+# Exercise 3
+#def print(students)
+#	students.each do |student|
+#		if student[:name].start_with?("A")
+#		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#		end
+#	end
+#end
+
+# Exercise 4
 def print(students)
-	# each_with_index = exercise 2
-	students.each_with_index do |student, index|
-		# if statement = exercise 3
-		#if student[:name].start_with?("A")
-		#if statement = exercise 4
+	students.each do |student|
 		if student[:name].length < 12
-			puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+		puts "#{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
 end
