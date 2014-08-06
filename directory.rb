@@ -53,11 +53,20 @@ end
 #end
 
 # Exercise 4
+#def print(students)
+#	students.each do |student|
+#		if student[:name].length < 12
+#		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#		end
+#	end
+#end
+
+# Exercise 5
 def print(students)
-	students.each do |student|
-		if student[:name].length < 12
-		puts "#{student[:name]} (#{student[:cohort]} cohort)"
-		end
+	counter = 0
+	while counter < students.size
+		puts "#{students[counter][:name]} (#{students[counter][:cohort]} cohort)"
+		counter += 1
 	end
 end
 
