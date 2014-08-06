@@ -114,8 +114,8 @@ def print(students)
 	end
 end
 
-def print_footer(names)
-	puts "Overall, we have #{names.length} great students"
+def print_footer(students)
+	puts "Overall, we have #{students.length} great students".center(80, "***")
 end
 
 #nothing happens until we call the methods
