@@ -1,45 +1,22 @@
 student_count = 23
 # Lets put all students into array
-students = [
-	{:name => "Ruth Earle", :cohort => :august},
-	{:name => "Andy Gates", :cohort => :august},
-	{:name => "Marc Singh", :cohort => :august},
-	{:name => "Faisal Aydarus", :cohort => :august},
-	{:name => "Ethel Ng", :cohort => :august},
-	{:name => "Kevin Daniels", :cohort => :august},
-	{:name => "Maya Driver", :cohort => :august},
-	{:name => "Leopold Kwok", :cohort => :august},
-	{:name => "James McNeil", :cohort => :august},
-	{:name => "Jerome Pratt", :cohort => :august},
-	{:name => "David Wickes", :cohort => :august},
-	{:name => "Javier Silverio", :cohort => :august},
-	{:name => "Elliot Lewis", :cohort => :august},
-	{:name => "Ben Tillett", :cohort => :august},
-	{:name => "Vincent Koch", :cohort => :august},
-	{:name => "Michelle Ballard", :cohort => :august},
-	{:name => "Nick Roberts", :cohort => :august},
-	{:name => "Tatiana Soukiassian", :cohort => :august},
-	{:name => "Merve Silk", :cohort => :august},
-	{:name => "Albert Vallverdu", :cohort => :august},
-	{:name => "Loius Schultze", :cohort => :august},
-	{:name => "Chris Oatley", :cohort => :august},
-	{:name => "Spike Lindsey", :cohort => :august},
-	{:name => "Henry Stanley", :cohort => :august},
-]
+students = []
 
 def input_students
 	puts "Please enter the names of the students"
 	puts "To finish, just hit return twice"
 	# create an empty array
 	students = []
-	# get the first name
+	# get the full name
+	puts "Students full name?"
 	name = gets.chomp
 	# while the name is not empty, repeat this code
-	while !name.empty? do
+	until name.empty? do
 		#add the student hash to the array
 		students << {:name => name.capitalize, :cohort => :august.capitalize}
 		puts "Now we have #{students.length} students"
 		# get another name from the user
+		puts "Students full name?"
 		name = gets.chomp
 	end
 	# return the array of students
@@ -53,8 +30,12 @@ def print_header
 end
 
 def print(students)
-	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+	# each_with_index = exercise 2
+	students.each_with_index do |student, index|
+		# if statement = exercise 3
+		if student[:name].start_with?("A")
+			puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
+		end
 	end
 end
 
