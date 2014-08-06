@@ -33,7 +33,9 @@ def print(students)
 	# each_with_index = exercise 2
 	students.each_with_index do |student, index|
 		# if statement = exercise 3
-		if student[:name].start_with?("A")
+		#if student[:name].start_with?("A")
+		#if statement = exercise 4
+		if student[:name].length < 12
 			puts "#{index} #{student[:name]} (#{student[:cohort]} cohort)"
 		end
 	end
