@@ -82,11 +82,11 @@ def print_cohort(students)
 	end
 end
 
-def print_footer(students)
+def print_footer(names)
 	if students.length == 1
-		puts "Overall, we have #{students.length} great student".center(80, "***")
+		puts "Overall, we have #{names.length} great student".center(80, "***")
 	else
-		puts "Overall, we have #{students.length} great students".center(80, "***")
+		puts "Overall, we have #{names.length} great students".center(80, "***")
 	end
 end
 
