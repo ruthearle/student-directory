@@ -17,18 +17,27 @@ def input_students
 		cohort = gets.chomp.to_sym
 		months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
 			if cohort.empty? or !months.include? cohort.to_sym
-				puts "Please enter the cohort month? or type 'yes' for August cohort"
-				cohort = gets.chomp.to_sym
-					if cohort == :yes
+				puts "You typed '#{cohort}'. Please enter the cohort month? or type 'yes' for August cohort"
+				cohort = gets.chomp
+					if cohort == "yes"
 						cohort = :august
 					end	
+					if 
+						puts "You typed #{cohort}. Please retype the cohort month"
+						cohort = gets.chomp
+					end
 			end
 		#add the student hash to the array
 		students << {
 									:name => name.upcase,
-									:cohort => cohort.capitalize
+									:cohort => cohort.to_sym.capitalize
 								}
-		puts "Now we have #{students.length} students"
+		# Exercise 10
+		if students.length == 1
+			puts "Now we have #{students.length} student"
+		else
+			puts "Now we have #{students.length} students"
+		end
 		# get another name from the user
 		puts "Students full name or 'quit'?"
 		name = gets.chomp
@@ -52,13 +61,27 @@ end
 
 
 
+
+# Exercise 9: printing grouped by cohort
+def print_cohort(students)
+	students.sort_by! { |hash| hash[:cohort] }
+	students.each do |student|
+		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+	end
+end
+
 def print_footer(students)
-	puts "Overall, we have #{students.length} great students".center(80, "***")
+	if students.length == 1
+		puts "Overall, we have #{students.length} great student".center(80, "***")
+	else
+		puts "Overall, we have #{students.length} great students".center(80, "***")
+	end
 end
 
 #nothing happens until we call the methods
 
 students = input_students
 print_header
-print(students)
+#print(students)
+print_cohort(students)
 print_footer(students)
