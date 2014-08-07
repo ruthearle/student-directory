@@ -9,24 +9,39 @@ def input_students
 	students = []
 	# get the full name
 	puts "Students full name?"
-	name = gets.chomp
+	name = gets.chop
 	# while the name is not equal to 'quit', repeat this code
 	until name == "quit" do
 		# get cohort
 		puts "Cohort month?"
-		cohort = gets.chomp.to_sym
-		months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
-			if cohort.empty? or !months.include? cohort.to_sym
+		cohort = gets.chop.to_sym
+		month = [
+								:january, 
+								:february, 
+								:march, 
+								:april, 
+								:may, 
+								:june, 
+								:july, 
+								:august, 
+								:september, 
+								:october, 
+								:november, 
+								:december
+							]
+		until month.include? cohort.to_sym
+			if cohort.empty? or !month.include? cohort.to_sym
 				puts "You typed '#{cohort}'. Please enter the cohort month? or type 'yes' for August cohort"
-				cohort = gets.chomp
+				cohort = gets.chop
 					if cohort == "yes"
 						cohort = :august
 					end	
 					if 
 						puts "You typed #{cohort}. Please retype the cohort month"
-						cohort = gets.chomp
+						cohort = gets.chop
 					end
 			end
+		end
 		#add the student hash to the array
 		students << {
 									:name => name.upcase,
@@ -40,7 +55,7 @@ def input_students
 		end
 		# get another name from the user
 		puts "Students full name or 'quit'?"
-		name = gets.chomp
+		name = gets.chop
 	end
 	# return the array of students
 	students
