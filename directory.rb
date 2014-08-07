@@ -112,5 +112,17 @@ def interactive_menu
 	end
 end
 
+def save_students
+	# open the file for writing
+	file = File.open("student.csv", "w")
+	# iterate over the array of students
+	@students.each do |student|
+		student_data = [student[:name], student[:cohort]]
+		csv_line = student_data.join(",")
+		file.puts csv_line
+	end
+	file.close
+end
+
 #nothing happens until we call the methods
 interactive_menu
