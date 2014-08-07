@@ -74,9 +74,6 @@ def print(students)
 	end
 end
 
-
-
-
 # Exercise 9: printing grouped by cohort
 def print_cohort(students)
 	students.sort_by! { |hash| hash[:cohort] }
