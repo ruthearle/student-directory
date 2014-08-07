@@ -4,13 +4,17 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  if students.length > 1
+    students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    end
   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.length} great students"
+  if names.length > 1
+    puts "Overall, we have #{names.length} great students"
+  end
 end
 
 def input_students
