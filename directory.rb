@@ -127,6 +127,6 @@ def save_students
 	file.close
 end
 
-# just checking if students file will be uploaded
+
 #nothing happens until we call the methods
 interactive_menu
