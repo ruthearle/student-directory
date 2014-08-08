@@ -81,6 +81,7 @@ def print_menu
 	# 1. print the menu and ask the user what to do
 	puts "1. Input the students"
 	puts "2. Show the students"
+	puts "3. Save students"
 	puts "9. Exit"
 end
 
@@ -97,6 +98,8 @@ def process(selection)
 			input_students
 		when "2"
 			show_students
+		when "3"
+			save_students
 		when "9"
 			exit # this will cause the program to terminate
 		else
@@ -123,6 +126,7 @@ def save_students
 	end
 	file.close
 end
+
 
 #nothing happens until we call the methods
 interactive_menu
