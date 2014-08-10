@@ -1,15 +1,14 @@
 @students = [] # an empty array accessible to all methods
-
 def print_header
-	puts "The students of my cohort at Makers Academy"
-	puts "-------------"
+  puts "The students of my cohort at Makers Academy"
+  puts "-------------"
 end
 
 # Version 6
 def print_student_list
-	@students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} cohort)"
-	end
+  @students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
 end
 
 def print_footer
@@ -21,17 +20,17 @@ def print_footer
 end
 
 def input_students
-	puts "Please enter the names of the students and then enter the month the cohort started"	
-	puts "To finish, type 'quit'"
-	# get the full name
-	puts "Students full name?"
-	name = gets.chop
-	# while the name is not equal to 'quit', repeat this code
-	until name == "quit" do
-		# get cohort
-		puts "Cohort month?"
-		cohort = gets.chop.to_sym
-		month = [
+  puts "Please enter the names of the students and then enter the month the cohort started"	
+  puts "Press 'enter' twice to quit."
+  # get the full name
+  puts "Students full name?"
+    name = STDIN.gets.chomp
+  # while the name is not equal to 'quit', repeat this code
+  until name.empty? do
+    # get cohort
+    puts "Cohort month?"
+      cohort = STDIN.gets.chomp
+    month = [
 								:january, 
 								:february, 
 								:march, 
@@ -48,21 +47,14 @@ def input_students
 		until month.include? cohort.to_sym
 			if cohort.empty? or !month.include? cohort.to_sym
 				puts "You typed '#{cohort}'. Please enter the cohort month? or type 'yes' for August cohort"
-				cohort = gets.chop
+        cohort = STDIN.gets.chomp
 					if cohort == "yes"
-						cohort = :august
-					end	
-					if 
-						puts "You typed #{cohort}. Please retype the cohort month"
-						cohort = gets.chop
+            cohort = :august
 					end
 			end
 		end
 		#add the student hash to the array
-		@students << {
-									:name => name.upcase,
-									:cohort => cohort.to_sym.capitalize
-								}
+		add_student(name, cohort)
 		# Exercise 10
 		if @students.length == 1
 			puts "Now we have #{@students.length} student"
@@ -71,8 +63,8 @@ def input_students
 		end
 		# get another name from the user
 		puts "Students full name or 'quit'?"
-		name = gets.chop
-	end
+    name = STDIN.gets.chomp
+  end
 	# return the array of students
 	@students
 end
@@ -113,8 +105,8 @@ end
 
 def interactive_menu
 	loop do
+    process(gets.chomp!)
 		print_menu
-		process(gets.chomp)
 	end
 end
 
@@ -130,15 +122,32 @@ def save_students
 	file.close
 end
 
-def load_students
-	file = File.open("student.csv", "r")
+def add_student(name, cohort)
+	@students << { :name => name.upcase, :cohort => cohort.to_sym.capitalize }
+end
+
+def load_students(filename = "student.csv")
+	file = File.open(filename, "r")
 	file.readlines.each do |line|
 		name, cohort = line.chomp.split(',')
-			@students << {:name => name, :cohort => cohort.to_sym}
+		add_student(name, cohort)
 	end
 	file.close
 end
 
+def try_load_students
+	filename = ARGV.first # first argument from the command line
+	return if filename.nil? # get out of the method if it isn't given
+	if File.exists?(filname) # if it exits
+		load_students(filename)
+		puts "Loaded #{@students.length} from #{filename}"
+	else # if it doesn't exist
+		puts "Sorry, #{filename} doesn't exist."
+		exit # quit program
+	end
+end
+
 
 #nothing happens until we call the methods
+try_load_students
 interactive_menu
