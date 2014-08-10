@@ -1,4 +1,6 @@
 @students = [] # an empty array accessible to all methods
+@name = ""
+
 def print_header
   puts "The students of my cohort at Makers Academy"
   puts "-------------"
@@ -19,17 +21,7 @@ def print_footer
 	end
 end
 
-def input_students
-  puts "Please enter the names of the students and then enter the month the cohort started"	
-  puts "Press 'enter' twice to quit."
-  # get the full name
-  puts "Students full name?"
-    name = STDIN.gets.chomp
-  # while the name is not equal to 'quit', repeat this code
-  until name.empty? do
-    # get cohort
-    puts "Cohort month?"
-      cohort = STDIN.gets.chomp
+def month
     month = [
 								:january, 
 								:february, 
@@ -44,7 +36,24 @@ def input_students
 								:november, 
 								:december
 							]
-		until month.include? cohort.to_sym
+end
+
+def student_name
+  puts "Students full name?"
+  @name = STDIN.gets.chomp
+end
+
+def input_students
+  puts "Please enter the names of the students and then enter the month the cohort started"	
+  puts "Press 'enter' twice to quit."
+  # get the full name
+  student_name
+  # while the name is not equal to 'quit', repeat this code
+  until @name.empty? do
+    # get cohort
+    puts "Cohort month?"
+      cohort = STDIN.gets.chomp
+	  until month.include? cohort.to_sym
 			if cohort.empty? or !month.include? cohort.to_sym
 				puts "You typed '#{cohort}'. Please enter the cohort month? or type 'yes' for August cohort"
         cohort = STDIN.gets.chomp
@@ -52,9 +61,9 @@ def input_students
             cohort = :august
 					end
 			end
-		end
+	  end
 		#add the student hash to the array
-		add_student(name, cohort)
+		add_student(@name, cohort)
 		# Exercise 10
 		if @students.length == 1
 			puts "Now we have #{@students.length} student"
@@ -62,8 +71,7 @@ def input_students
 			puts "Now we have #{@students.length} students"
 		end
 		# get another name from the user
-		puts "Students full name or 'quit'?"
-    name = STDIN.gets.chomp
+    student_name
   end
 	# return the array of students
 	@students
@@ -123,14 +131,14 @@ def save_students
 end
 
 def add_student(name, cohort)
-	@students << { :name => name.upcase, :cohort => cohort.to_sym.capitalize }
+	@students << { :name => @name.upcase, :cohort => cohort.to_sym.capitalize }
 end
 
 def load_students(filename = "student.csv")
 	file = File.open(filename, "r")
 	file.readlines.each do |line|
-		name, cohort = line.chomp.split(',')
-		add_student(name, cohort)
+		@name, cohort = line.chomp.split(',')
+		add_student(@name, cohort)
 	end
 	file.close
 end
