@@ -66,6 +66,14 @@ def test_cohort_spelling
   end
 end
 
+def student_length_footer
+  if @students.length == 1
+    puts "Now we have #{@students.length} student"
+  else
+    puts "Now we have #{@students.length} students"
+  end
+end
+
 def input_students
   puts "Please enter the names of the students and then enter the month the cohort started"	
   puts "Press 'enter' twice to quit."
@@ -78,15 +86,11 @@ def input_students
     cohort_month
     # check spelling of cohort month and offer a default value
     test_cohort_spelling
-		#add the student hash to the array
-		add_student(@name, @cohort)
-		# Exercise 10
-		if @students.length == 1
-			puts "Now we have #{@students.length} student"
-		else
-			puts "Now we have #{@students.length} students"
-		end
-		# get another name from the user
+    #add the student hash to the array
+    add_student(@name, @cohort)
+    # Exercise 10
+    student_length_footer
+    # get another name from the user
     student_name
   end
 	# return the array of students
@@ -129,7 +133,7 @@ end
 
 def interactive_menu
 	loop do
-    process(gets.chomp!)
+    process(STDIN.gets.chomp!)
 		print_menu
 	end
 end
