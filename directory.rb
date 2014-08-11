@@ -36,7 +36,14 @@ def month
 								:october, 
 								:november, 
 								:december
-							]
+						]
+end
+
+def default_month
+  if @cohort == "yes".downcase
+    @cohort = Time.now.strftime("%B").downcase.to_sym
+  end
+  @cohort
 end
 
 def student_name
@@ -44,8 +51,19 @@ def student_name
   @name = STDIN.gets.chomp
 end
 
+# enter current month if so wish
 def cohort_month
   @cohort = STDIN.gets.chomp
+  default_month
+end
+
+# check spelling
+def test_cohort_spelling
+  until month.include? @cohort.to_sym
+    puts "You typed '#{@cohort}'"
+    puts "Please enter the cohort month? or type 'yes' for this month"
+    cohort_month
+  end
 end
 
 def input_students
@@ -56,18 +74,10 @@ def input_students
   # while the name is not equal to 'quit', repeat this code
   until @name.empty? do
     # get cohort
-    puts "Cohort month?"
+    puts "Cohort month? or type 'yes' for August"
     cohort_month
-   	  until month.include? @cohort.to_sym
-			if @cohort.empty? or !month.include? @cohort.to_sym
-				puts "You typed '#{@cohort}'."
-        puts "Please enter the cohort month? or press 'enter' for August cohort"
-        cohort_month
-					if @cohort == "yes"
-            @cohort = :august
-					end
-			end
-	  end
+    # check spelling of cohort month and offer a default value
+    test_cohort_spelling
 		#add the student hash to the array
 		add_student(@name, @cohort)
 		# Exercise 10
