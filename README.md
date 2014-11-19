@@ -11,7 +11,12 @@ How to Use
 
 You'll need to have Ruby installed on your machine.
 
-Clone this repository to your computer. Then, at the command prompt, ```cd``` into the repository directory, and run:
+Clone this repository to your computer
+```shell
+$ git clone https://github.com/ruthearle/student-directory.git
+```
+
+. Then, at the command prompt, ```cd``` into the repository directory, and run:
 
 ```shell
 $ ruby directory.rb
