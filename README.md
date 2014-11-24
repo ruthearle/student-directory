@@ -1,4 +1,4 @@
-| [*Makers Academy*](http://www.makersacademy.com) | Week 1 |
+| [*Makers Academy*](http://www.makersacademy.com) | Week 1 - Project |
 | ---------------- | ------ |
 
 Student Directory
